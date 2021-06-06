@@ -43,6 +43,13 @@ public class FuenteController {
 		}
 	}
 	
+	@GetMapping("/porCertificacion/{certificacion}")
+	@ResponseBody
+	public ResponseEntity<List<Fuente>> listaPorCertificacion(@PathVariable("certificacion") String certificacion){
+		List<Fuente> listaFuente = service.listaPorCertificacion(certificacion);
+		return ResponseEntity.ok(listaFuente);
+	}
+	
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<Fuente> registra(@RequestBody Fuente obj){
@@ -65,14 +72,6 @@ public class FuenteController {
 		}else {
 			return ResponseEntity.notFound().build();
 		}
-	}
-	
-	
-	@GetMapping("/porCertificacion/{certificacion}")
-	@ResponseBody
-	public ResponseEntity<List<Fuente>> listaPorCertificacion(@PathVariable("certificacion") String certificacion){
-		List<Fuente> listaFuente = service.listaPorCertificacion(certificacion);
-		return ResponseEntity.ok(listaFuente);
 	}
 	
 }
